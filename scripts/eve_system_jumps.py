@@ -33,7 +33,7 @@ class EVE_System(object):
         self.security_status = security_status
 
     def __str__(self):
-        return f"System_ID: {self.system_id}, System_Name: {self.system_name}, Jumps: {self.jumps}, Security_Status: {self.security_status}"
+        return f"{self.system_id},{self.system_name},{self.jumps},{self.security_status}"
 
 # Create EVE System object
 def make_system(system_id, system_name, last_updated, total_jumps, jumps_from_last_call):
@@ -75,8 +75,10 @@ def main():
     print("Writing results to file")
     with open('C:/src/results.csv', "a+", encoding="utf-8") as f:
         # csv header
-        f.write("System_ID:, System_Name:, Jumps:, Security_Status:")
+        f.write("System_ID:, System_Name:, Jumps:, Security_Status:\n")
         for s in systems:
-            f.write(s.__str__())
+            f.write(s.__str__()+'\n')
+    
+    print("Completed")
 
 if __name__ == "__main__": main()
